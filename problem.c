@@ -59,44 +59,28 @@ void problem_init(int argc, char* argv[]){
 	//Place particles
 	struct particle p;
 	for (int i=0;i<nAsteroids;i++){
-		p.x =  (((double)rand()/(double)RAND_MAX-0.5)*radius);
-		p.y = (((double)rand()/(double)RAND_MAX-0.5)*radius);
-		p.z = (((double)rand()/(double)RAND_MAX-0.5)*radius);
-		p.m = mAsteroid/unityMassMod;
-		p.r  = calculate_radius(p.m);
-		p.ax =  0; p.ay =  0; p.az =  0;
 		double xdir = ((double)rand()/(double)RAND_MAX-0.5);
 		double ydir = ((double)rand()/(double)RAND_MAX-0.5);
 		double zdir = ((double)rand()/(double)RAND_MAX-0.5);
 		double dirMag = sqrt(xdir*xdir+ydir*ydir+zdir*zdir);
+		p.x = radius*xdir/dirMag;
+		p.y = radius*ydir/dirMag;
+		p.z = radius*zdir/dirMag;
+		p.m = mAsteroid;
+		p.r  = calculate_radius(p.m);
+		p.m = mAsteroid/unityMassMod;
+		p.ax =  0; p.ay =  0; p.az =  0;
+		xdir = ((double)rand()/(double)RAND_MAX-0.5);
+		ydir = ((double)rand()/(double)RAND_MAX-0.5);
+		zdir = ((double)rand()/(double)RAND_MAX-0.5);
+		dirMag = sqrt(xdir*xdir+ydir*ydir+zdir*zdir);
 		p.vx = v0*xdir/dirMag;
 		p.vy = v0*zdir/dirMag;
 		p.vz = v0*zdir/dirMag;
 		particles_add(p);
 		
 	}
-	struct particle p;
-	p.x  = -1; p.y  = 0; p.z  = 0;
-	p.vx = 10; p.vy = 0; p.vz = 0;
-	p.ax = 0; p.ay = 0; p.az = 0;
-	p.m  = 1;
-	p.r  = calculate_radius(p.m);
-        p.temp = 400;
-	particles_add(p);
-	p.x  = 0; p.y  = 1; p.z  = 0;
-	p.vx =  0; p.vy =  -10; p.vz =  0;
-	p.ax =  0; p.ay =  0; p.az =  0;
-	p.m  = 1;
-	p.r  = calculate_radius(p.m);
-        p.temp = 400;
-	particles_add(p);
-	p.x  = 0; p.y  = -1; p.z  = 0;
-	p.vx =  0; p.vy =  0.2; p.vz =  0;
-	p.ax =  0; p.ay =  0; p.az =  0;
-	p.m  = 2;
-	p.r  = calculate_radius(p.m);
-        p.temp = 400;
-	particles_add(p);
+	
 
         fp = fopen("temperatureTest.txt", "w");
         int i=0;
