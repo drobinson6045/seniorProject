@@ -131,7 +131,7 @@ double calculate_radius(double arg){
         return radius;
 }
 
-double calculate_coefficient_of_restitution(double arg){
-	double eps = -(1/1473)*arg + 1;
+double calculate_coefficient_of_restitution(double temp1, double temp2){
+	double eps = -(1/1473)*((temp1 + temp2)/2) + 1;
 	return eps;
 }
