@@ -49,7 +49,7 @@
 void gravity_finish();
 #endif // GRAVITY_GRAPE
 
-double density          = 100; // Need proper value
+double density          = 3966.52; // Need proper value
 double specific_heat	= 1; // Need proper value
 
 double softening 	= 0;
