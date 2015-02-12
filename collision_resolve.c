@@ -95,7 +95,7 @@ void collision_resolve_hardsphere(struct collision c){
 
 	// Coefficient of restitution
         //double eps = coefficient_of_restitution_for_velocity(vx21nn);
-        eps = calculate_coefficient_of_restitution(particles[c.p1].temp, particle[c.p2].temp);
+        eps = calculate_coefficient_of_restitution(particles[c.p1].temp, particles[c.p2].temp);
 	double dvx2 = -(1.0+eps)*vx21nn;
 	double minr = (p1.r>p2.r)?p2.r:p1.r;
 	double maxr = (p1.r<p2.r)?p2.r:p1.r;
