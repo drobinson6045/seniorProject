@@ -41,7 +41,7 @@ void problem_init(int argc, char* argv[]){
 	// Setup constants
 	dt = 1e-2;
 	tmax = 10000;
-	boxsize = 3;
+	boxsize = 0.1;
 	double radius = 20;  //In Au
 	int nAsteroids = 10000;
 	double mAsteroid = 100; //In Kg
