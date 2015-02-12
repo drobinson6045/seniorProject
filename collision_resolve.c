@@ -94,7 +94,8 @@ void collision_resolve_hardsphere(struct collision c){
 	double vx21nn = cphi * vx21  + sphi * vy21n;		
 
 	// Coefficient of restitution
-        double eps = coefficient_of_restitution_for_velocity(vx21nn);
+        //double eps = coefficient_of_restitution_for_velocity(vx21nn);
+        eps = calculate_coefficient_of_restitution(particles[c.p1].temp, particle[c.p2].temp)
 	double dvx2 = -(1.0+eps)*vx21nn;
 	double minr = (p1.r>p2.r)?p2.r:p1.r;
 	double maxr = (p1.r<p2.r)?p2.r:p1.r;
@@ -161,7 +162,6 @@ if (particles[c.p1].temp>500 || particles[c.p2].temp>500){ // Should be about 14
 
 }
 else { // Elastic collision
-  printf("%f\n", eps);
 
   // Energy before collision
   double vx1squared = particles[c.p1].vx*particles[c.p1].vx + particles[c.p1].vy*particles[c.p1].vy + particles[c.p1].vz*particles[c.p1].vz;
