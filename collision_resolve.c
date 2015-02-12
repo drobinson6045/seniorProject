@@ -36,7 +36,7 @@
 #define MAX(a, b) ((a) < (b) ? (b) : (a))
 
 
-double coefficient_of_restitution = 0.9;
+double coefficient_of_restitution = 1;
 double minimum_collision_velocity = 0;
 double collisions_constant_coefficient_of_restitution_for_velocity(double v);
 double (*coefficient_of_restitution_for_velocity) (double) = collisions_constant_coefficient_of_restitution_for_velocity;
