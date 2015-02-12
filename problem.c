@@ -67,8 +67,8 @@ void problem_init(int argc, char* argv[]){
 		p.y = radius*ydir/dirMag;
 		p.z = radius*zdir/dirMag;
 		p.m = mAsteroid;
-		p.r  = calculate_radius(p.m);
 		p.m = mAsteroid/unityMassMod;
+		p.r  = calculate_radius(p.m);
 		p.ax =  0; p.ay =  0; p.az =  0;
 		xdir = ((double)rand()/(double)RAND_MAX-0.5);
 		ydir = ((double)rand()/(double)RAND_MAX-0.5);
