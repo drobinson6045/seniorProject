@@ -82,11 +82,7 @@ void problem_init(int argc, char* argv[]){
 	}
 	
 
-        fp = fopen("temperatureTest.txt", "w");
-        int i=0;
-        for(i=0; i<N; i++){
-          fprintf(fp, "%f\t", particles[i].temp);
-        }
+        
 }
 
 void problem_inloop(){
@@ -96,5 +92,5 @@ void problem_output(){
 }
 
 void problem_finish(){
-  fclose(fp);
+  
 }
