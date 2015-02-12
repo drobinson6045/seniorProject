@@ -116,7 +116,7 @@ void collision_resolve_hardsphere(struct collision c){
 	if (isloc==1){
 #endif // MPI
 
-if (particles[c.p1].temp>500 || particles[c.p2].temp>500){ // Should be about 1473 kelvin
+if (particles[c.p1].temp>1473 || particles[c.p2].temp>1473){ // Should be about 1473 kelvin
   double mr_1 = particles[c.p1].m/(particles[c.p1].m + particles[c.p2].m);
   double mr_2 = particles[c.p2].m/(particles[c.p1].m + particles[c.p2].m);
 
