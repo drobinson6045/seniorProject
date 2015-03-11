@@ -95,7 +95,7 @@ void collision_resolve_hardsphere(struct collision c){
 
 	// Coefficient of restitution
         //double eps = coefficient_of_restitution_for_velocity(vx21nn);
-        eps = calculate_coefficient_of_restitution(particles[c.p1].temp, particles[c.p2].temp);
+        double eps = calculate_coefficient_of_restitution(particles[c.p1].temp, particles[c.p2].temp);
 	double dvx2 = -(1.0+eps)*vx21nn;
 	double minr = (p1.r>p2.r)?p2.r:p1.r;
 	double maxr = (p1.r<p2.r)?p2.r:p1.r;
@@ -124,7 +124,7 @@ if (particles[c.p1].temp>1473 || particles[c.p2].temp>1473){ // Should be about 
   double vx1squared = particles[c.p1].vx*particles[c.p1].vx + particles[c.p1].vy*particles[c.p1].vy + particles[c.p1].vz*particles[c.p1].vz;
   double vx2squared = particles[c.p2].vx*particles[c.p2].vx + particles[c.p2].vy*particles[c.p2].vy + particles[c.p2].vz*particles[c.p2].vz;
   double Ei = (0.5)*(particles[c.p1].m*vx1squared + particles[c.p2].m*vx2squared);
-  printf("Initial kinetic energy: %f\n", Ei);
+  //printf("Initial kinetic energy: %f\n", Ei);
 
   // Throw mass into P1 and update radius
   particles[c.p1].m += particles[c.p2].m;
@@ -148,17 +148,17 @@ if (particles[c.p1].temp>1473 || particles[c.p2].temp>1473){ // Should be about 
   double vx3squared = particles[c.p1].vx*particles[c.p1].vx + particles[c.p1].vy*particles[c.p1].vy + particles[c.p1].vz*particles[c.p1].vz;
   double Ef = (0.5)*particles[c.p1].m*vx3squared;
 
-  printf("Final kinetic energy: %f\n", Ef);
+  //printf("Final kinetic energy: %f\n", Ef);
   
   // Throw out P2
-  particles[c.p2].x = 100000;
+  particles[c.p2].x = 1e10;
   particles[c.p1].lastcollision = t;
 
   // Update temperature
   double deltaE = Ef-Ei;
   particles[c.p1].temp = particles[c.p1].m*particles[c.p1].temp + particles[c.p2].m*particles[c.p2].temp;
   particles[c.p1].temp = particles[c.p1].temp/(particles[c.p1].m + particles[c.p2].m);
-  printf("Final temperature (inelastic): %f\n", particles[c.p1].temp);
+  //printf("Final temperature (inelastic): %f\n", particles[c.p1].temp);
 
 }
 else { // Elastic collision
@@ -167,7 +167,7 @@ else { // Elastic collision
   double vx1squared = particles[c.p1].vx*particles[c.p1].vx + particles[c.p1].vy*particles[c.p1].vy + particles[c.p1].vz*particles[c.p1].vz;
   double vx2squared = particles[c.p2].vx*particles[c.p2].vx + particles[c.p2].vy*particles[c.p2].vy + particles[c.p2].vz*particles[c.p2].vz;
   double Ei = (0.5)*(particles[c.p1].m*vx1squared + particles[c.p2].m*vx2squared);
-  printf("Initial kinetic energy: %f\n", Ei);
+  //printf("Initial kinetic energy: %f\n", Ei);
 
 	const double p2pf = p1.m/(p1.m+p2.m);
 	particles[c.p2].vx -=	p2pf*dvx2n;
@@ -187,13 +187,13 @@ else { // Elastic collision
   vx1squared = particles[c.p1].vx*particles[c.p1].vx + particles[c.p1].vy*particles[c.p1].vy + particles[c.p1].vz*particles[c.p1].vz;
   vx2squared = particles[c.p2].vx*particles[c.p2].vx + particles[c.p2].vy*particles[c.p2].vy + particles[c.p2].vz*particles[c.p2].vz;
   double Ef = (0.5)*(particles[c.p1].m*vx1squared + particles[c.p2].m*vx2squared);
-  printf("Final kinetic energy: %f\n", Ei);
+  //printf("Final kinetic energy: %f\n", Ei);
 
   // Update temperature
   double deltaE = Ef-Ei;
   particles[c.p1].temp += deltaE/(2*particles[c.p1].m*specific_heat);
   particles[c.p2].temp += deltaE/(2*particles[c.p2].m*specific_heat);
-  printf("Final temperature (elastic): %f, %f\n", particles[c.p1].temp, particles[c.p2].temp);
+  //printf("Final temperature (elastic): %f, %f\n", particles[c.p1].temp, particles[c.p2].temp);
 }  // End elastic collision
 
 #ifdef MPI
