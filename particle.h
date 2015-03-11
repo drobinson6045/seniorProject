@@ -101,6 +101,6 @@ double calculate_radius(double arg);
 /*
 Coefficient of restitution
 */
-double calculate_coefficient_of_restitution(double arg);
+double calculate_coefficient_of_restitution(double temp1, double temp2);
 
 #endif // _PARTICLE_H
