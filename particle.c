@@ -128,6 +128,7 @@ int particles_get_rootbox_for_particle(struct particle pt){
 
 double calculate_radius(double arg){
         double radius = pow(((3*arg)/(4*M_PI*density)), 0.33333);
+	radius = radius;
         return radius;
 }
 
