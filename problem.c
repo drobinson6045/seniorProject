@@ -36,19 +36,25 @@
 #include "boundaries.h"
 
 extern double coefficient_of_restitution; 
+//extern double OMEGA;
 
 void problem_init(int argc, char* argv[]){
+
 	// Setup constants
-	dt = 1e-2;
-	tmax = 10000;
-	boxsize = 0.1;
-	double radius = 20;  //In Au
-	int nAsteroids = 10000;
-	double mAsteroid = 100; //In Kg
+	double OMEGA = 0.00013143527;
+	dt = 36;
+	//dt = dt/604800; // Convert to weeks
+	tmax = 1e10000;
+	boxsize = 10000*10;
+	double radius = 50000;  //In kiloMeters
+	int nAsteroids = 1000;
+	double mAsteroid = 1./nAsteroids; //In Earth masses
+
+	double G = 2.9736e15;
+
 	//Calculate Velocity Magnitude
-	double G = 1;
-	double v0 = sqrt(3/5*G*nAsteroids*mAsteroid/radius);  //In Au/Day
-	double unityMassMod = 6.7218859374E33;
+	double v0 = sqrt(3/5*G*nAsteroids*mAsteroid/radius);  //In MKS
+	//double unityMassMod = 6.7218859374E33;
 	//coefficient_of_restitution = 1; // elastic collisions
 	// Do not use any ghost boxes
 	nghostx = 0; nghosty = 0; nghostz = 0;
@@ -58,17 +64,28 @@ void problem_init(int argc, char* argv[]){
 	// Initial conditions
 	//Place particles
 	struct particle p;
+	/*p.x=0;
+	p.y=0;
+	p.z=0;
+	p.m=1;
+	p.r=10;
+	particles_add(p);*/
 	for (int i=0;i<nAsteroids;i++){
+		double theta = ((double)rand()/(double)RAND_MAX-0.5)*2*M_PI;
+		double phi = ((double)rand()/(double)RAND_MAX-0.5)*M_PI;
+
 		double xdir = ((double)rand()/(double)RAND_MAX-0.5);
 		double ydir = ((double)rand()/(double)RAND_MAX-0.5);
 		double zdir = ((double)rand()/(double)RAND_MAX-0.5);
 		double dirMag = sqrt(xdir*xdir+ydir*ydir+zdir*zdir);
-		p.x = radius*xdir/dirMag;
-		p.y = radius*ydir/dirMag;
-		p.z = radius*zdir/dirMag;
+		p.x = ((double)rand()/(double)RAND_MAX-0.5)*radius*sin(phi)*cos(theta);
+		p.y = ((double)rand()/(double)RAND_MAX-0.5)*radius*sin(phi)*sin(theta);
+		p.z = ((double)rand()/(double)RAND_MAX-0.5)*radius*cos(phi);
 		p.m = mAsteroid;
-		p.m = mAsteroid/unityMassMod;
+		p.temp = 11472.999999;
+		//p.m = mAsteroid/unityMassMod;
 		p.r  = calculate_radius(p.m);
+		//p.r = 1;
 		p.ax =  0; p.ay =  0; p.az =  0;
 		xdir = ((double)rand()/(double)RAND_MAX-0.5);
 		ydir = ((double)rand()/(double)RAND_MAX-0.5);
@@ -80,7 +97,6 @@ void problem_init(int argc, char* argv[]){
 		particles_add(p);
 		
 	}
-	
 
         
 }
