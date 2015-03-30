@@ -47,8 +47,15 @@ def InputFormat(minimum, maximum, string, inclusive):
 iteration_string = 'Enter the number of iterations: '
 iterations = int(InputFormat(0, 10000000, iteration_string, False))
 
-particle_string = 'Enter the maximum number of particles for each timestep: '
+particle_string = 'Enter the maximum number of particles: '
 max_num_particles = int(InputFormat(0, 10000, particle_string, False))
+
+print 'Each particle will be assigned a random value. Choose the lower and upper bounds for this value.'
+
+lower_bound_string = 'Enter the lower bound: '
+lower_bound = int(InputFormat(0, 10000000, lower_bound_string, True))
+upper_bound_string = 'Enter the lower bound: '
+upper_bound = int(InputFormat(0, 10000000, upper_bound_string, True))
 
 f_data = open('DataFile.txt', 'w')
 f_data.write('%d\n' % iterations)
@@ -56,7 +63,7 @@ for i in xrange(0, iterations):
   particle_count = int(random.uniform(1, max_num_particles))
   f_data.write('%d\n' % particle_count)
   for j in xrange(0, particle_count):
-    data_point = random.uniform(0, 10)
+    data_point = random.uniform(lower_bound, upper_bound)
     f_data.write('%f\n' % data_point)
 f_data.close()
   
