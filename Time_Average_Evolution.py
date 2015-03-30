@@ -43,7 +43,7 @@ for i in xrange(0, int(iterations)):
   timestep_array.append(i*dt)
 
 # Plot
-plt.plot(timestep_array, average_array, 'ko')
+plt.plot(timestep_array, average_array, 'k.')
 plt.xlabel('Time')
 plt.ylabel('Average Value')
 plt.ylim(0, max_value)
