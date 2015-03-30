@@ -47,7 +47,7 @@ def InputFormat(minimum, maximum, string, inclusive):
 iteration_string = 'Enter the number of iterations: '
 iterations = int(InputFormat(0, 10000000, iteration_string, False))
 
-particle_string = 'Enter the maximum number of particles: '
+particle_string = 'Enter the maximum number of particles for each timestep: '
 max_num_particles = int(InputFormat(0, 10000, particle_string, False))
 
 f_data = open('DataFile.txt', 'w')
