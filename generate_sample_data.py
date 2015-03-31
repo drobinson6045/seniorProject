@@ -58,7 +58,7 @@ lower_bound = int(InputFormat(0, 10000000, lower_bound_string, True))
 upper_bound_string = 'Enter the lower bound: '
 upper_bound = int(InputFormat(0, 10000000, upper_bound_string, True))
 
-f_data = open('DataFile.txt', 'w')
+f_data = open('DataFile.bin', 'wb')
 f_data.write('%d\n' % iterations)
 f_data.write('%d\n' % timestep)
 for i in xrange(0, iterations):
