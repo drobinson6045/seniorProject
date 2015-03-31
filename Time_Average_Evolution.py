@@ -8,13 +8,13 @@ import math
 import random
 import sys
 
-dt = 1 # Time step of simulation
 
 iteration_array = []
 f = open('DataFile.txt', 'r')
 dataArray = f.readlines()
 iterations = np.float(dataArray[0][0:])
-file_location = 1
+reporting_timestep = np.float(dataArray[1][0:])   # This is the "reporting timestep" - time between reported values (in days)
+file_location = 2
 max_value = 0
 
 for i in xrange(0, int(iterations)): # This loop reads data from the textfile and places it into nested arrays
@@ -40,7 +40,7 @@ for i in xrange(0, int(iterations)):
   for j in xrange(0, len(iteration_array[i])):
     cumulative_sum = cumulative_sum + iteration_array[i][j]
   average_array.append( cumulative_sum/len(iteration_array[i]) )
-  timestep_array.append(i*dt)
+  timestep_array.append(i*reporting_timestep)
 
 # Plot
 plt.plot(timestep_array, average_array, 'k.')
