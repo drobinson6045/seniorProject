@@ -10,7 +10,7 @@ import sys
 
 
 iteration_array = []
-f = open('DataFile.txt', 'r')
+f = open('DataFile.bin', 'rb')
 dataArray = f.readlines()
 iterations = np.float(dataArray[0][0:])
 reporting_timestep = np.float(dataArray[1][0:])   # This is the "reporting timestep" - time between reported values (in days)
